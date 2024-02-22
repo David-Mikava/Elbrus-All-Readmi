@@ -171,12 +171,24 @@ app.listen(PORT, () => {
 
 - Middleware are set buy `app.use()`
   ```js
+  const router = require("express").Router();
+
+const Home = require("../view/Home");
+
+router.get("/", async (req, res) => {
+  res.render(Home, { title: "ToDo" });
+});
+
+module.exports = router;
+
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(express.static(path.join(process.cwd(), 'public')));
   app.use((req,res,next)=>{
     next()
   });
+
+ 
   ```
   These are all middlewares. They change the request and/or the response object.
   How to use them, couple examples:
@@ -196,15 +208,7 @@ app.listen(PORT, () => {
   
   app.use('/users', usersCount, UserRouter);
 
- const router = require("express").Router();
 
-const Home = require("../view/Home");
-
-router.get("/", async (req, res) => {
-  res.render(Home, { title: "ToDo" });
-});
-
-module.exports = router;
 
   ```
   - Endpoint middleware. It will be invoked with every specific endpoint request.
