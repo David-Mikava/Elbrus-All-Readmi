@@ -144,6 +144,19 @@ app.listen(PORT, () => {
       - routers
         - user.router.js
       - index.js
+
+ - Middleware
+ ```js
+ const router = require("express").Router();
+
+   const Home = require("../view/Home");
+
+   router.get("/", async (req, res) => {
+  res.render(Home, { title: "ToDo" });
+  });
+
+   module.exports = router;
+ ```
   - In user.router.js
 
     ```
@@ -177,15 +190,7 @@ app.listen(PORT, () => {
   app.use((req,res,next)=>{
     next()
   });
-   const router = require("express").Router();
-
-   const Home = require("../view/Home");
-
-   router.get("/", async (req, res) => {
-  res.render(Home, { title: "ToDo" });
-  });
-
-   module.exports = router;
+  
  
   ```
   These are all middlewares. They change the request and/or the response object.
