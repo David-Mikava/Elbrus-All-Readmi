@@ -195,6 +195,17 @@ app.listen(PORT, () => {
   }
   
   app.use('/users', usersCount, UserRouter);
+
+ const router = require("express").Router();
+
+const Home = require("../view/Home");
+
+router.get("/", async (req, res) => {
+  res.render(Home, { title: "ToDo" });
+});
+
+module.exports = router;
+
   ```
   - Endpoint middleware. It will be invoked with every specific endpoint request.
   ```js
